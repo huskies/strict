@@ -1,0 +1,33 @@
+{
+  "name": "huskies-strict",
+  "description": "strict method , is huskies middleware.",
+  "version": "0.0.2",
+  "author": "brighthas <brighthas@gmail.com>",
+  "dependencies": {
+    "validator": "1.3.0"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "keywords": [
+    "strict",
+    "method",
+    "strict method"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/huskies/strict"
+  },
+  "main": "index",
+  "engines": {
+    "node": "*"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/huskies/strict/issues"
+  },
+  "scripts": {
+    "test": "mocha"
+  }
+}
