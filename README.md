@@ -1,7 +1,7 @@
 strict middleware
 ==================
 
-strict method , is huskies middleware.
+strict method ,convert and validate arguments, is huskies middleware.
 
 example
 =======

@@ -1,0 +1,14 @@
+{
+  "name": "strict",
+  "repo": "brighthas/strict",
+  "description": "strict method ,convert and validate arguments, is huskies middleware.",
+  "version": "0.0.3",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "index.js"
+  ]
+}
