@@ -25,6 +25,13 @@ var hus = require("huskies"),
     wrap("leo",false); // throw error, type error.
 
 ```
+Install for component
+=====================
+  
+  Install with [component(1)](http://component.io):
+
+    $ component install brighthas/strict
+
 npm install
 ============
 
