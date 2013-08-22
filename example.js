@@ -1,4 +1,4 @@
-var hus = require("huskies"),
+var hus = require("../huskies"),
     strict = require("./");
     
     function test(name,age){
@@ -7,10 +7,9 @@ var hus = require("huskies"),
     
     var wrap = hus(test)
                 .use(strict)
-                .set({type:String,params:{min:5}})
-                .set({type:Number})
+                .set(String,{min:5},Number,true)
                 .seal();
     
     wrap("brighthas",25);
     
-    wrap("ledfdfdo",false); // throw error.
+    wrap("ddddfds",false); // throw error.

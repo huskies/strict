@@ -1,7 +1,7 @@
 {
   "name": "huskies-strict",
   "description": "strict method , is huskies middleware.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "brighthas <brighthas@gmail.com>",
   "dependencies": {
     "validator": "1.3.0"

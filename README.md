@@ -17,13 +17,12 @@ var hus = require("huskies"),
     
     var wrap = hus(test)
                 .use(strict)
-                .set({type:String,params:{min:5}})
-                .set({type:Number})
+                .set(String,min:5,Number)
                 .seal();
     
     wrap("brighthas",25);
     
-    wrap("leo",false); // throw error.
+    wrap("leo",false); // throw error, type error.
 
 ```
 npm install
@@ -86,14 +85,14 @@ Article.prototype = {
             this._name = name;
         })
         .use(strict)
-        .set({type:String}),
+        .set(String),
     
     setType:
         huskies(function(type){
             this._type = type;
         })
         .use(strict)
-        .set({type:Type,params:{len:5}})
+        .set(Type,{len:5})
     
 }
 
@@ -113,7 +112,7 @@ default value
 
 ```javascript
    // if set default value, the arg no validat.
-   set({type:String,params:{default:"brighthas"})
+   set(String,{default:"brighthas"})
 ```
 
 dumb
@@ -137,7 +136,7 @@ Number type validater
 ```javascript
 
    Number validater
-     set({type:Number,params:{min:3,max:12})
+     set(Number,{min:3,max:12})
 
 ```
 
@@ -148,13 +147,13 @@ String type validater
 
    String validater
    
-     set({type:String,params:{min:3,max:12}})
+     set(String,{min:3,max:12})
      
-     set({type:String,params:{regexp:/abc/}})
+     set(String,{regexp:/abc/})
      
-     set({type:String,params:{len:10}})
+     set(String,{len:10})
      
-     set({type:String,params:{type:"mail"}})
+     set(String,{type:"mail"})
          // type : mail | url | ip | ipv4 | ipv6 | int | float
 
 ```

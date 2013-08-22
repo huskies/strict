@@ -16,35 +16,63 @@ function Arguments(){
     throw new ParamError("only label, cann't call.")
 }
 
-function strictmethod(avgs,_options,locals){
+function strictmethod(avgs,_options,locals,exec){
 
-        var options,dumb;
-        
+       var options,dumb,validateParams = [],types = [];
+       
         // init
         if(!locals.strict){
-            var lastParam = _options[_options.length-1];
+        
+            var lastParam = _options[_options.length-1],
+                j = 0,
+                argsLen;
+                
             if(typeof lastParam === "boolean"){
                 dumb = lastParam;
                 options = _options.slice(0,_options.length-1);
             }else{
                 options = _options;
             }
+            
+            argsLen = options.length;
+            
+            for(var i= 0;i<argsLen;){
+                if(isType(options[i])){
+                   types.push(options[i]);
+                   if(i+1<argsLen){
+                       if(!isType(options[i+1])){
+                          validateParams[j] = options[i+1];
+                          i+=2;
+                       }else{
+                          i+=1;
+                       }
+                   }else{
+                       i+=1;
+                   }
+                   j+=1;
+                }else{
+                   throw new ParamError("params error.")
+                }
+            } 
+            
             locals.strict = {
                 dumb:dumb,
-                options:options
-            }
+                types:types,
+                validateParams:validateParams
+            }    
+            
         }else{
-            options = locals.strict.options;
+            types = locals.strict.types;
             dumb = locals.strict.dumb;
+            validateParams = locals.strict.validateParams;
         }
 
         
-        for(var i=0,len = options.length; i<len ; i++){
+        for(var i=0,len = types.length; i<len ; i++){
             
            var arg = avgs[i];
-           var option = options[i];
-           var type = option.type;
-           var params = option.params;
+           var type = types[i];
+           var params = validateParams[i];
            var validater = getValidation(type);
 
            if(!arg && params && params.default){
@@ -60,7 +88,12 @@ function strictmethod(avgs,_options,locals){
                        if(arg === undefined){
                            throw new ParamError("argument "+i+" type error");
                        }
+                   }else{
+                       if(!coreTypeValidate(arg,type)){
+                            throw new ParamError("argument"+i+" type error");
+                       }                   
                    }
+
                    
                    if(params && validater){
                         
@@ -70,8 +103,10 @@ function strictmethod(avgs,_options,locals){
                    }
 
                }catch(e){
-                    if(!dumb){
-                        throw e;
+                    if(dumb){
+                        exec(false)
+                    }else{
+                        throw e;       
                     }
                }
            
